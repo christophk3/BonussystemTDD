@@ -14,4 +14,14 @@ class BonusServiceTest {
 
         assertThat(result).isEqualTo(0.0);
     }
+
+    @Test
+    void applyRestrictions_returnsMaxBonus_whenBonusIsAboveMax() {
+        BonusService service = new BonusService(0.0, 5000.0);
+
+        double result = service.applyRestrictions(6000.0);
+
+        assertThat(result).isEqualTo(5000.0);
+    }
+
 }

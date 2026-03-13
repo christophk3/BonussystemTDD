@@ -14,6 +14,9 @@ public class BonusService {
         if (bonus < minBonus) {
             return minBonus;
         }
+        if (bonus > maxBonus) {
+            return maxBonus;
+        }
         return bonus;
     }
 
