@@ -24,4 +24,13 @@ class BonusServiceTest {
         assertThat(result).isEqualTo(5000.0);
     }
 
+    @Test
+    void applyRestrictions_returnsBonusUnchanged_whenWithinRange() {
+        BonusService service = new BonusService(0.0, 5000.0);
+
+        double result = service.applyRestrictions(1234.56);
+
+        assertThat(result).isEqualTo(1234.56);
+    }
+
 }
