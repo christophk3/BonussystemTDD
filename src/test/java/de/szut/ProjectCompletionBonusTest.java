@@ -10,8 +10,8 @@ class ProjectCompletionBonusTest {
 
     private BonusComponent mockedBonusComponent;
     private ProjectCompletionBonus projectCompletionBonus;
-
     private Employee employeeWithProject;
+
     @BeforeEach
     void setUp() {
         mockedBonusComponent = mock(BonusComponent.class);
@@ -31,5 +31,12 @@ class ProjectCompletionBonusTest {
         employeeWithProject.setCompletedProjects(2);
         double result = projectCompletionBonus.calculateBonus(employeeWithProject);
         assertEquals(20.0, result);
+    }
+
+    @Test
+    void givenEmployeeWithZeroCompletedProjects_calculateBonusIsZero() {
+        employeeWithProject.setCompletedProjects(0);
+        double result = projectCompletionBonus.calculateBonus(employeeWithProject);
+        assertEquals(0.0, result);
     }
 }
