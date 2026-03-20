@@ -11,6 +11,15 @@ public class BonusService {
     }
 
     public double applyRestrictions(double bonus) {
-        throw new UnsupportedOperationException("Noch nicht implementiert");
+        if (bonus < minBonus) {
+            return minBonus;
+        }
+        if (bonus > maxBonus) {
+            return maxBonus;
+        }
+        return bonus;
     }
+
+
+
 }
