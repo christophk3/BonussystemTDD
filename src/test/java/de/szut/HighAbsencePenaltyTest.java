@@ -36,4 +36,15 @@ class HighAbsencePenaltyTest {
 
         assertThat(bonusAmount).isEqualTo(-100);
     }
+
+    @Test
+    void calculateBonus_employeeHas45Absence_tierTwoPenalty() {
+        employee.setAbsentDays(45);
+
+        double bonusAmount = penalty.calculateBonus(employee);
+
+        assertThat(bonusAmount).isEqualTo(-300);
+    }
+
+
 }

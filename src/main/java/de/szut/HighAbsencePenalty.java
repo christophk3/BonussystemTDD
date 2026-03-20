@@ -17,7 +17,9 @@ public class HighAbsencePenalty extends BonusDecorator {
 
     @Override
     public double calculateBonus(Employee employee) {
-        if(employee.getAbsentDays() > tierOneLimit) {
+        if(employee.getAbsentDays() > tierTwoLimit) {
+            return tierTwoValue;
+        } else if(employee.getAbsentDays() > tierOneLimit) {
             return tierOneValue;
         } else {
             return 0;
