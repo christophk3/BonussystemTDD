@@ -2,10 +2,10 @@ package de.szut;
 
 public class LowAbsenceBonus extends BonusDecorator {
 
-    private int tierOneLimit;
-    private int tierOneBonus;
-    private int tierTwoLimit;
-    private double tierTwoBonus;
+    private final int tierOneLimit;
+    private final int tierOneBonus;
+    private final int tierTwoLimit;
+    private final double tierTwoBonus;
 
     public LowAbsenceBonus(BonusComponent bonusComponent) {
         super(bonusComponent);
@@ -19,7 +19,10 @@ public class LowAbsenceBonus extends BonusDecorator {
     public double calculateBonus(Employee employee) {
         if(employee.getAbsentDays() <= tierTwoLimit) {
             return tierTwoBonus;
+        } else if(employee.getAbsentDays() <= tierOneLimit) {
+            return tierOneBonus;
+        } else {
+            return 0;
         }
-        return tierOneBonus;
     }
 }
