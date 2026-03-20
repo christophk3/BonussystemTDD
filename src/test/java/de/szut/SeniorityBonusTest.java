@@ -19,11 +19,20 @@ class SeniorityBonusTest {
     }
 
     @Test
-    void testCalculateBonus_employeeFiveYearsAtCompany() {
+    void testCalculateBonus_employeeFiveYearsAtCompany_bonusIs100() {
         employee.setYearsAtCompany(5);
 
         double bonusAmount = seniorityBonus.calculateBonus(employee);
 
         assertThat(bonusAmount).isEqualTo(100);
+    }
+
+    @Test
+    void testCalculateBonus_employeeOneYearAtCompany_NoBonus() {
+        employee.setYearsAtCompany(1);
+
+        double bonusAmount = seniorityBonus.calculateBonus(employee);
+
+        assertThat(bonusAmount).isEqualTo(0);
     }
 }

@@ -2,15 +2,20 @@ package de.szut;
 
 public class SeniorityBonus extends BonusDecorator {
 
-    private int intervalYears;
-    private double bonusPerInterval;
+    private final int intervalYears;
+    private final double bonusPerInterval;
 
     public SeniorityBonus(BonusComponent bonusComponent) {
         super(bonusComponent);
+        intervalYears = 5;
+        bonusPerInterval = 100;
     }
 
     @Override
     public double calculateBonus(Employee employee) {
-        return 100;
+        int yearsAtCompany = employee.getYearsAtCompany();
+        int bonusTimes = yearsAtCompany / intervalYears;
+        return bonusTimes * bonusPerInterval;
     }
+
 }
