@@ -8,6 +8,6 @@ public class ProjectCompletionBonus extends BonusDecorator {
 
     @Override
     public double calculateBonus(Employee employee) {
-        return 200;
+        return employee.getCompletedProjects() * 10.0;
     }
 }
