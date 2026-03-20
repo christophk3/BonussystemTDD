@@ -11,12 +11,16 @@ public class HighAbsencePenalty extends BonusDecorator {
         super(bonusComponent);
         tierOneLimit = 30;
         tierTwoLimit = 40;
-        tierOneValue = 100;
-        tierTwoValue = 300;
+        tierOneValue = -100;
+        tierTwoValue = -300;
     }
 
     @Override
     public double calculateBonus(Employee employee) {
-        return 0;
+        if(employee.getAbsentDays() > tierOneLimit) {
+            return tierOneValue;
+        } else {
+            return 0;
+        }
     }
 }

@@ -20,11 +20,20 @@ class HighAbsencePenaltyTest {
 
 
     @Test
-    void calculateBonus_employeeHas30Absence_noPenalty() {
+    void calculateBonus_employeeHas25Absence_noPenalty() {
         employee.setAbsentDays(30);
 
         double bonusAmount = penalty.calculateBonus(employee);
 
         assertThat(bonusAmount).isEqualTo(0);
+    }
+
+    @Test
+    void calculateBonus_employeeHas35Absence_tierOnePenalty() {
+        employee.setAbsentDays(35);
+
+        double bonusAmount = penalty.calculateBonus(employee);
+
+        assertThat(bonusAmount).isEqualTo(-100);
     }
 }
