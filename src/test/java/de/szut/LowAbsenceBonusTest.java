@@ -37,4 +37,13 @@ class LowAbsenceBonusTest {
         assertThat(bonusAmount).isEqualTo(100);
     }
 
+    @Test
+    void calculateBonus_employeeHas50Absence_NoBonusApplied() {
+        employee.setAbsentDays(50);
+
+        double bonusAmount = bonus.calculateBonus(employee);
+
+        assertThat(bonusAmount).isEqualTo(0);
+
+    }
 }
