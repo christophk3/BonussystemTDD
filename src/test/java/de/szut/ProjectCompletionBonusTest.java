@@ -23,6 +23,13 @@ class ProjectCompletionBonusTest {
     void givenEmployeeWithOneCompletedProject_calculateBonus() {
         employeeWithProject.setCompletedProjects(1);
         double result = projectCompletionBonus.calculateBonus(employeeWithProject);
-        assertEquals(200.0, result);
+        assertEquals(10.0, result);
+    }
+
+    @Test
+    void givenEmployeeWithTwoCompletedProject_calculateBonus() {
+        employeeWithProject.setCompletedProjects(2);
+        double result = projectCompletionBonus.calculateBonus(employeeWithProject);
+        assertEquals(20.0, result);
     }
 }
