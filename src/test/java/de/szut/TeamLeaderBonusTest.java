@@ -26,4 +26,13 @@ class TeamLeaderBonusTest {
 
         assertThat(result).isEqualTo(300.0);
     }
+
+    @Test
+    void calculateBonus_noBonus_whenEmployeeIsNotTeamLeader() {
+
+        double result = teamLeaderBonus.calculateBonus(employee);
+
+        assertThat(result).isEqualTo(0.0);
+    }
+
 }
