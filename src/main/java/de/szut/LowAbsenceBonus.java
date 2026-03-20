@@ -17,6 +17,9 @@ public class LowAbsenceBonus extends BonusDecorator {
 
     @Override
     public double calculateBonus(Employee employee) {
-        return tierTwoBonus;
+        if(employee.getAbsentDays() <= tierTwoLimit) {
+            return tierTwoBonus;
+        }
+        return tierOneBonus;
     }
 }

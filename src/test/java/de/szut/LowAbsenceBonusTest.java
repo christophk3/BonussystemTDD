@@ -27,4 +27,14 @@ class LowAbsenceBonusTest {
 
         assertThat(bonusAmount).isEqualTo(300);
     }
+
+    @Test
+    void calculateBonus_employeeHas15Absence_TierOneBonusIsApplied() {
+        employee.setAbsentDays(15);
+
+        double bonusAmount = bonus.calculateBonus(employee);
+
+        assertThat(bonusAmount).isEqualTo(100);
+    }
+
 }
