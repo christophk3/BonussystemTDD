@@ -1,12 +1,13 @@
 package de.szut;
 
-public abstract class BonusDecorator {
+public abstract class BonusDecorator implements BonusComponent {
 
-    private BonusComponent bonusComponent;
+    protected BonusComponent bonusComponent;
 
     public BonusDecorator(BonusComponent bonusComponent) {
         this.bonusComponent = bonusComponent;
     }
 
+    @Override
     public abstract double calculateBonus(Employee employee);
 }
