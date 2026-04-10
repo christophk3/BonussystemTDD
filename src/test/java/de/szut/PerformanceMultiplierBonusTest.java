@@ -27,4 +27,12 @@ class PerformanceMultiplierBonusTest {
         double result = performanceMultiplierBonus.calculateBonus(employee);
         assertEquals(100.0, result);
     }
+
+    @Test
+    void givenEmployeeWithMidPerformance_calculateBonusWithFactorOnePointTwo() {
+        employee.setPerformanceRating(50);
+        when(mockedBonusComponent.calculateBonus(employee)).thenReturn(100.0);
+        double result = performanceMultiplierBonus.calculateBonus(employee);
+        assertEquals(120.0, result);
+    }
 }
