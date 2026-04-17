@@ -73,4 +73,18 @@ class LowAbsenceBonusTest {
                 Arguments.of(21, 0)
         );
     }
+
+    @Test
+    void shouldAddInnerBonusToLowAbsenceBonus() {
+        employee.setAbsentDays(5);
+
+        BonusComponent innerBonus = mock(BonusComponent.class);
+        org.mockito.Mockito.when(innerBonus.calculateBonus(employee)).thenReturn(200.0);
+
+        LowAbsenceBonus lowAbsence = new LowAbsenceBonus(innerBonus);
+
+        assertThat(lowAbsence.calculateBonus(employee)).isEqualTo(500.0);
+    }
+
+
 }
