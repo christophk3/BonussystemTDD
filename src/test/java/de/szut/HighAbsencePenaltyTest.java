@@ -26,12 +26,13 @@ class HighAbsencePenaltyTest {
 
     @Test
     void calculateBonus_employeeHas25Absence_noPenalty() {
-        employee.setAbsentDays(30);
+        employee.setAbsentDays(25);  // war: 30
 
         double bonusAmount = penalty.calculateBonus(employee);
 
         assertThat(bonusAmount).isEqualTo(0);
     }
+
 
     @Test
     void calculateBonus_employeeHas35Absence_tierOnePenalty() {
@@ -74,4 +75,16 @@ class HighAbsencePenaltyTest {
                 Arguments.of(45, -300)
         );
     }
+    @Test
+    void shouldAddInnerBonusToHighAbsencePenalty() {
+        employee.setAbsentDays(35);
+
+        BonusComponent innerBonus = mock(BonusComponent.class);
+        org.mockito.Mockito.when(innerBonus.calculateBonus(employee)).thenReturn(500.0);
+
+        HighAbsencePenalty penalty = new HighAbsencePenalty(innerBonus);
+
+        assertThat(penalty.calculateBonus(employee)).isEqualTo(400.0);
+    }
+
 }
