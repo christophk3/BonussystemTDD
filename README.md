@@ -1,17 +1,12 @@
 # BonussystemTDD
 
-Seniority bonus: 100€
+Bonussystem für Mitarbeiter auf Basis des **Decorator-Patterns**.
 
-Project completion bonus: 10€
-
-Team lead bonus: 300€
-
-Low: bis 30 points                                                  
-Mid: 30-70 points                        
-High: über 70 points
-
-lowMultiplicationFactor: 1.0
-
-midMultiplicationFactor: 1.2
-
-highMultiplicationFactor: 1.4
+## Bonusberechnung
+- **Seniority-Bonus:** +100€ alle 5 Jahre
+- **Project-Completion-Bonus:** +10€ pro Projekt
+- **Teamleader-Bonus:** +300€
+- **Low-Absence-Bonus:** +300€ (≤10 Fehltage), +100€ (11–20 Fehltage)
+- **High-Absence-Penalty:** -100€ (≥30 Fehltage), -300€ (≥40 Fehltage)
+- **Performance-Multiplikator:** 1.0 (≤30 Punkte), 1.2 (≤70 Punkte), 1.5 (>70 Punkte)
+- **BonusService:** Begrenzt den Bonus auf einen Mindest- und Höchstbetrag
