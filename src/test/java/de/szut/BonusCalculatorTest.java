@@ -17,9 +17,19 @@ class BonusCalculatorTest {
     }
 
     @Test
-    void calculateBonus_withBaseBonus_returnsZero() {
+    void calculateBonus_givenBaseBonus_returnsZero() {
         double result = bonusCalculator.calculateBonus(employee);
 
         assertThat(result).isEqualTo(0.0);
+    }
+
+    @Test
+    void calculateBonus_givenSeniorityBonus_adds100ForFiveYears() {
+        employee.setYearsAtCompany(5);
+        bonusCalculator.calculateSeniorityBonus();
+
+        double result = bonusCalculator.calculateBonus(employee);
+
+        assertThat(result).isEqualTo(100.0);
     }
 }
