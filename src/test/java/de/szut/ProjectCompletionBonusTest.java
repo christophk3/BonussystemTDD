@@ -5,6 +5,8 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class ProjectCompletionBonusTest {
 
@@ -39,4 +41,17 @@ class ProjectCompletionBonusTest {
         double result = projectCompletionBonus.calculateBonus(employeeWithProject);
         assertEquals(0.0, result);
     }
+
+    @Test
+    void shouldAddInnerBonusToProjectCompletionBonus() {
+        employeeWithProject.setCompletedProjects(3);
+
+        BonusComponent innerBonus = mock(BonusComponent.class);
+        org.mockito.Mockito.when(innerBonus.calculateBonus(employeeWithProject)).thenReturn(100.0);
+
+        ProjectCompletionBonus projectBonus = new ProjectCompletionBonus(innerBonus);
+
+        assertThat(projectBonus.calculateBonus(employeeWithProject)).isEqualTo(130.0);
+    }
+
 }
