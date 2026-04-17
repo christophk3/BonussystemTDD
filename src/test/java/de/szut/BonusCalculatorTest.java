@@ -12,24 +12,26 @@ class BonusCalculatorTest {
 
     @BeforeEach
     void setUp() {
-        bonusCalculator = new BonusCalculator();
+        BonusService bonusService = new BonusService(-500, 1000);
+        bonusCalculator = new BonusCalculator(bonusService);
         employee = new Employee("Max Mustermann", 0, 0, 0, 0, false);
     }
 
     @Test
-    void calculateBonus_givenBaseBonus_returnsZero() {
-        double result = bonusCalculator.calculateBonus(employee);
-
-        assertThat(result).isEqualTo(0.0);
+    void calculateTotalBonus_newEmployee_returnsLowAbsenceBonus() {
+        assertThat(bonusCalculator.calculateTotalBonus(employee)).isEqualTo(300.0);
     }
 
     @Test
-    void calculateBonus_givenSeniorityBonus_adds100ForFiveYears() {
+    void calculateTotalBonus_seniorityFiveYears_returnsSeniorityPlusLowAbsence() {
         employee.setYearsAtCompany(5);
-        bonusCalculator.calculateSeniorityBonus();
-
-        double result = bonusCalculator.calculateBonus(employee);
-
-        assertThat(result).isEqualTo(100.0);
+        assertThat(bonusCalculator.calculateTotalBonus(employee)).isEqualTo(400.0);
     }
+
+    @Test
+    void calculateTotalBonus_bonusExceedsMax_returnsMax() {
+        employee.setYearsAtCompany(100);
+        assertThat(bonusCalculator.calculateTotalBonus(employee)).isEqualTo(1000.0);
+    }
+
 }

@@ -10,3 +10,4 @@ Bonussystem für Mitarbeiter auf Basis des **Decorator-Patterns**.
 - **High-Absence-Penalty:** -100€ (≥30 Fehltage), -300€ (≥40 Fehltage)
 - **Performance-Multiplikator:** 1.0 (≤30 Punkte), 1.2 (≤70 Punkte), 1.5 (>70 Punkte)
 - **BonusService:** Begrenzt den Bonus auf einen Mindest- und Höchstbetrag
+- **BonusCalculator:** Berechnet den Gesamtbonus aller Decorators und wendet die Restriktionen des BonusService an

@@ -2,17 +2,21 @@ package de.szut;
 
 public class BonusCalculator {
 
-    private BonusComponent bonusComponent;
+    private final BonusService bonusService;
 
-    public BonusCalculator() {
-        this.bonusComponent = new BaseBonus();
+    public BonusCalculator(BonusService bonusService) {
+        this.bonusService = bonusService;
     }
 
-    public void calculateSeniorityBonus() {
-        this.bonusComponent = new SeniorityBonus(this.bonusComponent);
-    }
+    public double calculateTotalBonus(Employee employee) {
+        BonusComponent bonus = new BaseBonus();
+        bonus = new SeniorityBonus(bonus);
+        bonus = new ProjectCompletionBonus(bonus);
+        bonus = new TeamLeaderBonus(bonus, 300);
+        bonus = new LowAbsenceBonus(bonus);
+        bonus = new HighAbsencePenalty(bonus);
+        bonus = new PerformanceMultiplierBonus(bonus);
 
-    public double calculateBonus(Employee employee) {
-        return bonusComponent.calculateBonus(employee);
+        return bonusService.applyRestrictions(bonus.calculateBonus(employee));
     }
 }
