@@ -61,4 +61,16 @@ class SeniorityBonusTest {
                 Arguments.of(15, 300)
         );
     }
+
+    @Test
+    void shouldAddInnerBonusToSeniorityBonus() {
+        employee.setYearsAtCompany(10);
+
+        BonusComponent innerBonus = mock(BonusComponent.class);
+        org.mockito.Mockito.when(innerBonus.calculateBonus(employee)).thenReturn(50.0);
+
+        SeniorityBonus seniority = new SeniorityBonus(innerBonus);
+        assertThat(seniority.calculateBonus(employee)).isEqualTo(250.0);
+    }
+
 }

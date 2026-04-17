@@ -15,7 +15,8 @@ public class SeniorityBonus extends BonusDecorator {
     public double calculateBonus(Employee employee) {
         int yearsAtCompany = employee.getYearsAtCompany();
         int bonusTimes = yearsAtCompany / intervalYears;
-        return bonusTimes * bonusPerInterval;
+        return bonusComponent.calculateBonus(employee) + bonusTimes * bonusPerInterval;
     }
+
 
 }
