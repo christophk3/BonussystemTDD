@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
+
 class TeamLeaderBonusTest {
 
     Employee employee;
@@ -34,5 +35,19 @@ class TeamLeaderBonusTest {
 
         assertThat(result).isEqualTo(0.0);
     }
+
+    @Test
+    void shouldAddInnerBonusToTeamLeaderBonus() {
+        employee.setTeamLeader(true);
+
+        BonusComponent innerBonus = mock(BonusComponent.class);
+        org.mockito.Mockito.when(innerBonus.calculateBonus(employee)).thenReturn(100.0);
+
+        TeamLeaderBonus teamLeader = new TeamLeaderBonus(innerBonus, 500.0);
+
+        assertThat(teamLeader.calculateBonus(employee)).isEqualTo(600.0);
+
+    }
+
 
 }

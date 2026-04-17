@@ -12,10 +12,11 @@ public class TeamLeaderBonus extends BonusDecorator {
     @Override
     public double calculateBonus(Employee employee) {
         if (employee.isTeamLeader()) {
-            return teamLeaderBonus;
+            return bonusComponent.calculateBonus(employee) + teamLeaderBonus;
         }
-        return 0.0;
+        return bonusComponent.calculateBonus(employee);
     }
+
 
 
 }
